@@ -25,7 +25,7 @@ pipeline {
                     // Проверка текущего каталога и содержимого
                     sh 'pwd'
                     sh 'ls -la'
-                    // Выполнение сборки
+                    sh 'chmod +x ./scripts/BuildAndRunTests.sh'
                     def buildResult = sh(script: 'make all', returnStatus: true)
                     if (buildResult != 0) {
                         error 'Build failed!'
