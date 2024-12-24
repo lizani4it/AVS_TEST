@@ -37,6 +37,10 @@ pipeline {
         stage('Test') {
             steps {
                 script {
+                    // Установка прав на выполнение
+                    sh 'chmod +x ./scripts/BuildAndRunTests.sh'
+                    // Проверка прав на файл
+                    sh 'ls -l ./scripts/BuildAndRunTests.sh'
                     // Выполнение тестов
                     def testResult = sh(script: 'make test', returnStatus: true)
                     if (testResult != 0) {
