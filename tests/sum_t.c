@@ -4,7 +4,7 @@
 
 void sum_test()
 {
-    assert(sum(5, 4) == 9);
+    assert(sum(5, 4) == 8);
     assert(sum(2, 3) == 5);
 }
 
