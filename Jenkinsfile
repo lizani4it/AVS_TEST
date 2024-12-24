@@ -10,7 +10,10 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
+                    // Установка Git, если он не установлен
                     sh 'apt-get update && apt-get install -y git'
+                    // Проверка версии Git
+                    sh 'git --version'
                 }
                 checkout scm
             }
@@ -20,7 +23,7 @@ pipeline {
             steps {
                 script {
                     // Выполнение сборки
-                    def buildResult = sh(script: 'make obj', returnStatus: true)
+                    def buildResult = sh(script: 'make all', returnStatus: true) // Измените на правильную цель
                     if (buildResult != 0) {
                         error 'Build failed!'
                     }
