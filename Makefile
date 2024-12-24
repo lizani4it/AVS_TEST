@@ -19,6 +19,8 @@ dirs:
 	@mkdir -p $(BIN_DIR)
 	@mkdir -p $(OBJ_DIR)
 
+execute: all
+
 %.o: %.c
 	@ $(CC) $(CFLAGS) -c ./$< -o $(OBJ_DIRECTORY_NAME)/$(notdir $@)
 
