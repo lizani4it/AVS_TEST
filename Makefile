@@ -3,6 +3,7 @@ export ROOT_DIRECTORY = ${shell pwd}
 export CC = gcc
 export CFLAGS = -g -O0 -I ${ROOT_DIRECTORY}
 
+MAKE := make
 OBJ_DIR := obj
 BIN_DIR := bin
 
