@@ -22,6 +22,7 @@ $(TARGET): $(OBJS)
 	@$(CC) $(CFLAGS) -o $@ $^
 
 $(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)  # Убедитесь, что каталог существует
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 execute: $(TARGET)
