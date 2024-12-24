@@ -22,8 +22,11 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    // Проверка текущего каталога и содержимого
+                    sh 'pwd'
+                    sh 'ls -la'
                     // Выполнение сборки
-                    def buildResult = sh(script: 'make all', returnStatus: true) // Измените на правильную цель
+                    def buildResult = sh(script: 'make all', returnStatus: true)
                     if (buildResult != 0) {
                         error 'Build failed!'
                     }
