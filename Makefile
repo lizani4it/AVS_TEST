@@ -38,4 +38,3 @@ clean:
 	@$(MAKE) -C tests/ clean
 	@rm -rf $(OBJ_DIR) $(BIN_DIR)
 	@rm -rf *.o
-	@rm -rf main
