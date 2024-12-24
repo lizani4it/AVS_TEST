@@ -10,10 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    // Установка Git, если он не установлен
                     sh 'apt-get update && apt-get install -y git'
-                    // Проверка версии Git
-                    sh 'git --version'
                 }
                 checkout scm
             }
@@ -22,11 +19,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Проверка текущего каталога и содержимого
-                    sh 'pwd'
-                    sh 'ls -la'
                     // Выполнение сборки
-                    def buildResult = sh(script: 'make all', returnStatus: true)
+                    def buildResult = sh(script: 'make obj', returnStatus: true)
                     if (buildResult != 0) {
                         error 'Build failed!'
                     }
@@ -37,10 +31,6 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    // Установка прав на выполнение
-                    sh 'chmod +x ./scripts/BuildAndRunTests.sh'
-                    // Проверка прав на файл
-                    sh 'ls -l ./scripts/BuildAndRunTests.sh'
                     // Выполнение тестов
                     def testResult = sh(script: 'make test', returnStatus: true)
                     if (testResult != 0) {

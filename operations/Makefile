@@ -1,23 +1,16 @@
-# Определяем переменные
-CC = gcc
-CFLAGS = -g -O0
+OBJ_DIRECTORY_NAME = obj
 
-# Директории
-ODIR = ../obj
-SDIR = .
+CSRC = $(shell find ./ -name "*.c")
+OBJ = $(patsubst %.c, %.o, $(CSRC))
 
-# Находим все исходные файлы .c в директории tests
-CSRC = $(shell find $(SDIR) -name "*.c")
-# Определяем объектные файлы
-OBJ = $(patsubst %.c, $(ODIR)/%.o, $(CSRC))
+all: obj $(OBJ)
 
-# Основная цель
-all: $(OBJ)
+%.o: %.c
+	@ $(CC) $(CFLAGS) -c ./$< -o $(OBJ_DIRECTORY_NAME)/$(notdir $@)
 
-# Правило для компиляции .c файлов в .o
-$(ODIR)/%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+obj:
+	@ mkdir -p $(OBJ_DIRECTORY_NAME)
 
 .PHONY: clean
 clean:
-	@rm -rf $(ODIR)/
+	@ rm -rf ./obj/
