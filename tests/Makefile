@@ -1,17 +1,17 @@
 OBJ_DIRECTORY_NAME = obj
 
 CSRC = $(shell find ./ -name "*.c")
-OBJ = $(patsubst %.c, $(OBJ_DIRECTORY_NAME)/%.o, $(CSRC))
+OBJ = $(patsubst %.c, %.o, $(CSRC))
 
-all: $(OBJ_DIRECTORY_NAME) $(OBJ)
+all: obj $(OBJ)
 
-$(OBJ_DIRECTORY_NAME):
-    @ mkdir -p $@
+%.o: %.c
+	@ $(CC) $(CFLAGS) -c ./$< -o $(OBJ_DIRECTORY_NAME)/$(notdir $@)
 
-$(OBJ_DIRECTORY_NAME)/%.o: %.c
-    @ $(CC) $(CFLAGS) -c $< -o $@
+obj:
+	@ mkdir -p $(OBJ_DIRECTORY_NAME)
 
-.PHONY: all clean
+.PHONY: clean
 clean:
-    @ rm -rf $(OBJ_DIRECTORY_NAME)/
-    @ rm -f *.out
+	@ rm -rf ./obj/
+	@ rm *.out
