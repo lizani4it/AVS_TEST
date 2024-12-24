@@ -26,7 +26,7 @@ pipeline {
                     sh 'pwd'
                     sh 'ls -la'
                     sh 'chmod +x ./scripts/BuildAndRunTests.sh'
-                    sh 'chmod +x ./main'
+                    sh 'chmod +x ./main.c'
                     def buildResult = sh(script: 'make all', returnStatus: true)
                     if (buildResult != 0) {
                         error 'Build failed!'
@@ -40,7 +40,7 @@ pipeline {
                 script {
                     // Установка прав на выполнение
                     sh 'chmod +x ./scripts/BuildAndRunTests.sh'
-                    sh 'chmod +x ./main'
+                    sh 'chmod +x ./main.c'
                     sh 'ls -l ./scripts/BuildAndRunTests.sh'
                     // Выполнение тестов
                     def testResult = sh(script: 'make test', returnStatus: true)
