@@ -22,13 +22,10 @@ dirs:
 %.o: %.c
 	@ $(CC) $(CFLAGS) -c ./$< -o $(OBJ_DIRECTORY_NAME)/$(notdir $@)
 
-execute:
-	@./main
 
 obj:
 	@$(MAKE) -C operations/
 	@$(MAKE) -C tests/
-	@$(CC) $(CFLAGS) -c main.c
 
 test: obj
 	@./scripts/BuildAndRunTests.sh
